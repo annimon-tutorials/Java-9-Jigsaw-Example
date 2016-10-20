@@ -1,10 +1,15 @@
 package com.example.timeapp;
 
-import com.example.timelocal.TimeLocal;
+import com.example.timeapp.spi.TimeProvider;
+import java.util.ServiceLoader;
 
 public final class Main {
 
     public static void main(String[] args) {
-        System.out.format("Current time: %s%n", TimeLocal.now());
+        ServiceLoader<TimeProvider> serviceLoader = ServiceLoader.load(TimeProvider.class);
+        serviceLoader.forEach(t -> {
+            System.out.format("Current time: %s%n", t.now());
+            System.out.println(t.getClass());
+        });
     }
 }

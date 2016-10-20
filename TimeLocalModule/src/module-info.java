@@ -1,3 +1,6 @@
 module com.example.timelocalmodule {
-    exports com.example.timelocal;
+    requires com.example.timeapp;
+
+    provides com.example.timeapp.spi.TimeProvider
+        with com.example.timelocal.TimeLocalProvider;
 }
