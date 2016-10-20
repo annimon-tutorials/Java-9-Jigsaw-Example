@@ -1,0 +1,7 @@
+mods/
+**/build/
+**/dist/
+**/nbproject/private/
+**/nbproject/genfiles.properties
+**/nbproject/build-impl.xml
+**/*.class
