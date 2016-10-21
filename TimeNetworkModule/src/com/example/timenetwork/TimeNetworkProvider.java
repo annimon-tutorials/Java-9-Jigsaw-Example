@@ -1,13 +1,18 @@
 package com.example.timenetwork;
 
 import com.example.timeapp.spi.TimeProvider;
+import java.awt.Image;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
+import javax.imageio.ImageIO;
 
 public class TimeNetworkProvider implements TimeProvider {
 
+    private static Image icon;
+    
     @Override
     public String now() {
         try {
@@ -20,5 +25,16 @@ public class TimeNetworkProvider implements TimeProvider {
         } catch (IOException | InterruptedException ex) {
             throw new RuntimeException("Network error");
         }
+    }
+
+    @Override
+    public Image icon() {
+        if (icon == null) {
+            try (InputStream is = getClass().getResourceAsStream("/res/icon.png")) {
+                if (is != null)
+                    icon = ImageIO.read(is);
+            } catch (IOException ignore) { }
+        }
+        return icon;
     }
 }

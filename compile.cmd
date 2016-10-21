@@ -23,6 +23,12 @@ echo Compile timenetworkmodule
     TimeNetworkModule/src/module-info.java ^
     TimeNetworkModule/src/com/example/timenetwork/TimeNetworkProvider.java
 
+echo Copy resources
+mkdir mods\com.example.timelocalmodule\res
+mkdir mods\com.example.timenetworkmodule\res
+copy /b TimeLocalModule\src\res mods\com.example.timelocalmodule\res
+copy /b TimeNetworkModule\src\res mods\com.example.timenetworkmodule\res
+
 echo Run timeapp
 %JAVA9% --module-path mods ^
         -m com.example.timeapp/com.example.timeapp.Main
