@@ -1,9 +1,12 @@
 package com.example.timeapp;
 
 import com.example.timeapp.spi.TimeProvider;
+import com.example.timemidnight.MidnightProvider;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.util.ServiceLoader;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +20,10 @@ public final class Main extends JFrame {
     public static void main(String[] args) {
         final Main frame = new Main();
         ServiceLoader<TimeProvider> serviceLoader = ServiceLoader.load(TimeProvider.class);
-        serviceLoader.forEach(t -> {
+        Stream.concat(
+                StreamSupport.stream(serviceLoader.spliterator(), false),
+                Stream.of(new MidnightProvider())) // we can directly access to class from automatic module
+                .forEach(t -> {
             final JButton button = new JButton();
             button.setText(t.getClass().getSimpleName());
             final Image icon = t.icon();
