@@ -6,4 +6,4 @@
 
 **[Example 3](https://github.com/annimon-tutorials/Java-9-Jigsaw-Example/tree/example-3): Modules and resources**. Shows how to share resources in modules.
 
-**[Example 4](https://github.com/annimon-tutorials/Java-9-Jigsaw-Example/tree/example-2): Automatic module**. Shows how to deal with existing non-modular jar.
+**[Example 4](https://github.com/annimon-tutorials/Java-9-Jigsaw-Example/tree/example-4): Automatic module**. Shows how to deal with existing non-modular jar.
